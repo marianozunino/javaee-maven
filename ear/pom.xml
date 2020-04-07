@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>org.example</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>ear</artifactId>
+    <packaging>ear</packaging>
+
+    <build>
+        <finalName>example</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>2.0.2.Final</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+            <!--Ear plugin -creating the ear - watch out skinny WARS!-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <unpackTypes>rar,war,ejb</unpackTypes>
+                    <finalName>example</finalName>
+                    <defaultJavaBundleDir>lib/</defaultJavaBundleDir>
+                    <skinnyWars>true</skinnyWars>
+                    <modules>
+                        <webModule>
+                            <groupId>org.example</groupId>
+                            <artifactId>webapp</artifactId>
+                            <unpack>true</unpack>
+                        </webModule>
+                        <ejbModule>
+                            <groupId>org.example</groupId>
+                            <artifactId>business</artifactId>
+                            <unpack>true</unpack>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- our in app dependencies-->
+    <dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>webapp</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>business</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+</project>
