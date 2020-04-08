@@ -32,12 +32,12 @@
                     <skinnyWars>true</skinnyWars>
                     <modules>
                         <webModule>
-                            <groupId>org.example</groupId>
+                            <groupId>${parent.groupId}</groupId>
                             <artifactId>webapp</artifactId>
                             <unpack>true</unpack>
                         </webModule>
                         <ejbModule>
-                            <groupId>org.example</groupId>
+                            <groupId>${parent.groupId}</groupId>
                             <artifactId>business</artifactId>
                             <unpack>true</unpack>
                         </ejbModule>
@@ -50,13 +50,13 @@
     <!-- our in app dependencies-->
     <dependencies>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>${parent.groupId}</groupId>
             <artifactId>webapp</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>${parent.groupId}</groupId>
             <artifactId>business</artifactId>
             <version>${project.version}</version>
             <type>ejb</type>
