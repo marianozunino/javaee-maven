@@ -48,7 +48,7 @@
 
         <!-- This module needs ejb -->
         <dependency>
-            <groupId>org.example</groupId>
+            <groupId>${parent.groupId}</groupId>
             <artifactId>business</artifactId>
         </dependency>
     </dependencies>
